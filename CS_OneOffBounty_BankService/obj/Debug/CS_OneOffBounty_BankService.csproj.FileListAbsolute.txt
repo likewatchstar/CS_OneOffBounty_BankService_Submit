@@ -1,0 +1,6 @@
+G:\GitHubSource\CS_OneOffBounty_BankService\CS_OneOffBounty_BankService\obj\Debug\CS_OneOffBounty_BankService.csproj.CoreCompileInputs.cache
+G:\GitHubSource\CS_OneOffBounty_BankService\CS_OneOffBounty_BankService\bin\Debug\CS_OneOffBounty_BankService.exe.config
+G:\GitHubSource\CS_OneOffBounty_BankService\CS_OneOffBounty_BankService\bin\Debug\CS_OneOffBounty_BankService.exe
+G:\GitHubSource\CS_OneOffBounty_BankService\CS_OneOffBounty_BankService\obj\Debug\CS_OneOffBounty_BankService.exe
+G:\GitHubSource\CS_OneOffBounty_BankService\CS_OneOffBounty_BankService\bin\Debug\Newtonsoft.Json.dll
+G:\GitHubSource\CS_OneOffBounty_BankService\CS_OneOffBounty_BankService\obj\Debug\CS_OneOffBounty_BankService.csproj.CopyComplete
