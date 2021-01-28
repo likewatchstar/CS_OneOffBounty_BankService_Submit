@@ -76,23 +76,15 @@ namespace CS_OneOffBounty_BankService
                     var Response = webClient.UploadData(Url, "POST", Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(submit)));
                     string StringResponse = "";
                     ABC_SB_Submit_Res ObjectResponse = null;
-
-                    try
-                    {
-                         StringResponse = Encoding.UTF8.GetString(Response);
-                         ObjectResponse = JsonConvert.DeserializeObject<ABC_SB_Submit_Res>(StringResponse);
-                    }
-                    catch (Exception ex)
-                    {
-                        
-                    }
+                    StringResponse = Encoding.UTF8.GetString(Response);
+                    ObjectResponse = JsonConvert.DeserializeObject<ABC_SB_Submit_Res>(StringResponse);
                     if (ObjectResponse.RetCode == "0000")
                     {
                         var Model = GetLogModel(RequestMessage, NowTime, true, ObjectResponse.RetMsg);
                         InsertLog(Model);
                         foreach (DataRow row in dt.Rows)
                         {
-                            SqlHelper.ExecuteNonQuery("update Z_NewOneOffBounty_CS set SendState='3',SubmitTime='"+NowTime.ToString()+"' where Guid='"+row["Guid"].ToString()+"'");
+                            SqlHelper.ExecuteNonQuery("update Z_NewOneOffBounty_CS set SendState='3',SubmitTime='" + NowTime.ToString() + "' where Guid='" + row["Guid"].ToString() + "'");
                         }
                     }
                     else
@@ -101,13 +93,13 @@ namespace CS_OneOffBounty_BankService
                         {
                             SqlHelper.ExecuteNonQuery("update Z_NewOneOffBounty_CS set SubmitBatch=null where Guid='" + row["Guid"].ToString() + "'");
                         }
-                        var Model=GetLogModel(RequestMessage, NowTime, false, ObjectResponse.RetMsg);
+                        var Model = GetLogModel(RequestMessage, NowTime, false, ObjectResponse.RetMsg);
                         InsertLog(Model);
                     }
                 }
                 else
                 {
-                    var Model=GetLogModel("没有需要提交银行的数据", NowTime, false,"");
+                    var Model = GetLogModel("没有需要提交银行的数据", NowTime, false, "");
                     InsertLog(Model);
                 }
             }
@@ -127,7 +119,7 @@ namespace CS_OneOffBounty_BankService
                 }
                 catch (Exception ex2)
                 {
-                    AddLogToTxt(JsonConvert.SerializeObject(Model)+":报错:"+ex2.Message);
+                    AddLogToTxt(JsonConvert.SerializeObject(Model) + ":报错:" + ex2.Message);
                 }
             }
         }
@@ -143,7 +135,7 @@ namespace CS_OneOffBounty_BankService
             return res;
         }
 
-        static Model.Z_NewOneOffBounty_CS_ServiceLog GetLogModel(string RequestMessage,DateTime NowTime,bool Success,string ResponseMessage)
+        static Model.Z_NewOneOffBounty_CS_ServiceLog GetLogModel(string RequestMessage, DateTime NowTime, bool Success, string ResponseMessage)
         {
             Model.Z_NewOneOffBounty_CS_ServiceLog Model = new Model.Z_NewOneOffBounty_CS_ServiceLog();
             Model.Guid = Guid.NewGuid().ToString();
@@ -165,7 +157,7 @@ namespace CS_OneOffBounty_BankService
         }
 
 
-         static void AddLogToTxt(string str)
+        static void AddLogToTxt(string str)
         {
             string fileName = Process.GetCurrentProcess().MainModule.FileName;
             fileName = fileName.Substring(0, fileName.LastIndexOf(@"\") + 1) + "日志Log";
