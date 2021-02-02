@@ -84,7 +84,7 @@ namespace CS_OneOffBounty_BankService
                         InsertLog(Model);
                         foreach (DataRow row in dt.Rows)
                         {
-                            SqlHelper.ExecuteNonQuery("update Z_NewOneOffBounty_CS set SendState='3',SubmitTime='" + NowTime.ToString() + "' where Guid='" + row["Guid"].ToString() + "'");
+                            SqlHelper.ExecuteNonQuery("update Z_NewOneOffBounty_CS set SendState='3',SubmitTime='" + NowTime.ToString() + "',SubmitNo='" + dt.Rows.IndexOf(row).ToString()+"' where Guid='" + row["Guid"].ToString() + "'");
                         }
                     }
                     else
